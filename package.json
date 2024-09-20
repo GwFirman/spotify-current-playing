@@ -1,5 +1,5 @@
 {
-    "name": "spotify-top-tracks",
+    "name": "spotify-current-playing",
     "version": "1.0.0",
     "main": "index.js",
     "dependencies": {

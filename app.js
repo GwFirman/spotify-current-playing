@@ -1,4 +1,4 @@
-fetch (api/spotify.js) 
+fetch ('api/spotify') 
     .then (response => response.json())
     .then (data => {
         
