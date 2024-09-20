@@ -3,16 +3,16 @@ fetch ('api/spotify')
     .then (data => {
         
         const currentPlaying = document.getElementById('current-playing');
-        
-        data.item.artists.forEach(track => {
-            
+        const currentPlayingData = data;
+
+        if (currentPlayingData.currently_playing_type === 'track') {
             const currentPlayingContainer = document.createElement('div');
             currentPlayingContainer.classList.add('p-2', 'lg:p-4', 'flex', 'items-center');
       
             const img = document.createElement('img');
             img.id = 'cover';
-            img.src = track.item.album.images[0].url;
-            img.alt = `Cover image for ${track.item.name}`;
+            img.src = currentPlayingData.item.album.images[0].url;
+            img.alt = `Cover image for ${currentPlayingData.item.name}`;
             img.classList.add('rounded-md', 'mr-4', 'lg:size-16', 'size-12');
       
             const textContainer = document.createElement('div');
@@ -21,11 +21,11 @@ fetch ('api/spotify')
             const songTitle = document.createElement('p');
             songTitle.id = 'judul-lagu';
             songTitle.classList.add('font-medium');
-            songTitle.textContent = track.item.name;
+            songTitle.textContent = currentPlayingData.item.name;
       
             const artistName = document.createElement('p');
             artistName.id = 'nama-artis';
-            artistName.textContent = track.item.artists.map(artist => artist.name).join(', ');
+            artistName.textContent = currentPlayingData.item.artists.map(artist => artist.name).join(', ');
       
             textContainer.appendChild(songTitle);
             textContainer.appendChild(artistName);
@@ -34,6 +34,6 @@ fetch ('api/spotify')
             currentPlayingContainer.appendChild(textContainer);
       
             currentPlaying.appendChild(currentPlayingContainer);
-        });
+          } 
 
     });
